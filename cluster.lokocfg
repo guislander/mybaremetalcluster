@@ -21,7 +21,9 @@ variable "oidc_client_id" {}
 variable "oidc_username_claim" {}
 variable "oidc_groups_claim" {}
 variable "kernel_args" {}
-variable "encrypt_pod_traffic"
+variable "os_version" {}
+variable "os_channel"{}
+variable "encrypt_pod_traffic" {}
 variable "install_to_smallest_disk" {}
 variable "wipe_additional_disks" {}
 
@@ -34,7 +36,7 @@ cluster "bare-metal" {
 
   # SSH Public keys.
   ssh_pubkeys = [
-    file("~/.ssh/id_ed25519.pub"),
+    pathexpand("~/.ssh/id_ed25519.pub"),
   ]
   # Whether the operating system should PXE boot and install from matchbox /assets cache.
   cached_install = "false"
@@ -55,7 +57,7 @@ cluster "bare-metal" {
   matchbox_http_endpoint = var.matchbox_http_endpoint
 
   # Domain name.
-  k8s_domain_name = var.k8s_domain_name
+  k8s_domain_name = var.domain_name
 
   # FQDN of controller nodes.
   controller_domains = var.controller_domains
