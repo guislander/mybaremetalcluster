@@ -2,6 +2,7 @@
 
 variable "asset_dir" {}
 variable "cluster_name" {}
+variable "ssh_public_keys" {}
 variable "matchbox_ca_path" {}
 variable "matchbox_client_cert_path" {}
 variable "matchbox_client_key_path" {}
@@ -22,7 +23,7 @@ variable "oidc_username_claim" {}
 variable "oidc_groups_claim" {}
 variable "kernel_args" {}
 variable "os_version" {}
-variable "os_channel"{}
+variable "os_channel" {}
 variable "encrypt_pod_traffic" {}
 variable "install_to_smallest_disk" {}
 variable "wipe_additional_disks" {}
@@ -35,9 +36,8 @@ cluster "bare-metal" {
   cluster_name = var.cluster_name
 
   # SSH Public keys.
-  ssh_pubkeys = [
-    pathexpand("~/.ssh/id_ed25519.pub"),
-  ]
+  ssh_pubkeys = var.ssh_public_keys
+
   # Whether the operating system should PXE boot and install from matchbox /assets cache.
   cached_install = "false"
 
