@@ -42,13 +42,13 @@ cluster "bare-metal" {
   cached_install = "false"
 
   # Matchbox CA crt path.
-  matchbox_ca_path = var.matchbox_ca_path
+  matchbox_ca_path = pathexpand(var.matchbox_ca_path)
 
   # Matchbox client crt path.
-  matchbox_client_cert_path = var.matchbox_client_cert_path
+  matchbox_client_cert_path = pathexpand(var.matchbox_client_cert_path)
 
   # Matchbox client key path.
-  matchbox_client_key_path = var.matchbox_client_key_path
+  matchbox_client_key_path = pathexpand(var.matchbox_client_key_path)
 
   # Matchbox https endpoint.
   matchbox_endpoint = var.matchbox_endpoint
